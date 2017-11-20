@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<section class="testimonial-slider section-padding text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li>
+                            <!-- <div class="avatar"><img src="{% static 'img/avatar.jpg' %}" alt="Sedna Testimonial Avatar"></div> -->
+                            <h1>Know your daily rate.</h1>
+                            <p class="intro">Do you know what it would take to be a millionaire? If you earned $4,000 per day, you would reach the million-dollar mark each year.</p>
+                            <p class="type-it">"Success is getting what you want. Happiness is wanting what you get." — Dale Carnegie</p>
+                            <a href="{% url 'blog:post_list' post_class=1 %}" class="btn btn-accent btn-large">Gambling</a>
+                        </li>
+                        <li>
+                            <h1>Start early.</h1>
+                            <p class="intro">As the old saying goes: The early bird catches the worm…or, in this case, gets to retire in style. The sooner you put your money to work, the more time it has to grow. Earning a paycheck, whether you are self-employed or work for a company, means the opportunity to contribute to an IRA, which you should seize ASAP..</p>
+                            <a href="{% url 'blog:post_list' post_class=2 %}" class="btn btn-accent btn-large">Affiliate marketing</a>
+                        </li>
+                        <li>
+                            <h1>Only do wealthy activities.</h1>
+                            <p class="intro">The number one wealth killer is when a person of promise hangs out in places of poverty. Many times, people put themselves in poor places, which surrounds them with poor people. Get away from poor places if you want to avoid poor people. Dwelling along with poor people in poor places will never make you rich.</p>
+                            <a href="{% url 'blog:post_list' post_class=3 %}" class="btn btn-accent btn-large">Forex trading</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

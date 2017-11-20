@@ -1,0 +1,179 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% load blog_tags %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block inject_css %}
+	<link href="{% static 'css/blog.css' %}" rel="stylesheet">
+	<link href="{% static 'css/notification.css' %}" rel="stylesheet">
+	<link href="{% static 'css/blog_detail.css' %}" rel="stylesheet">
+	<link href="{% static 'css/social_icons.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+	<div class="blog-detail-main">
+		<div class="blog-detail">
+			<!-- <img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image }}"> -->
+			<p class="blog-detail-title">{{ post.title }}</p>
+			<p class="blog-post-meta publish-date">
+				<span>Published {{ post.publish }} by {{ post.real_author }}</span>
+				<span class="notification show-count notify" data-count={{ post.id }}></span>		
+			</p>
+			{{ post.top_banner_ads | markdown | safe }}
+			{{ post.body | markdown | safe }}
+			<br>
+			<div>
+				<a href="{% url 'blog:post_share' post.id %}" class="share-sect">
+					<div class="row">
+						<div class="col-sm-2">
+							<p class="fa fa-share-alt square-Btn sha" title="ShareThis"></p>
+						</div>
+						<div class="col-sm-10 share-post">Share this post</div>
+					</div>
+				</a>
+			</div>
+
+			<hr class="featurette-divider">
+			{% with comments.count as total_comments %}
+				<h2>
+					{{ total_comments }} comment{{ total_comments|pluralize }}
+				</h2>
+			{% endwith %}
+			{% for comment in comments %}
+				<div class="comment">
+					<p class="blog-post-meta">
+						Comment {{ forloop.counter }} by {{ comment.name }}
+						{{ comment.created }}
+					</p>
+					{{ comment.body|linebreaks }}
+				</div>
+				<hr class="featurette-divider">
+			{% empty %}
+				<p>There are no comments yet.</p>
+			{% endfor %}
+			<div class="socials social-position">
+				<ul>
+					<li><a href="#" class="fa fa-facebook square-Btn fb" title="Facebook"></a></li>
+					<li><a href="#" class="fa fa-twitter square-Btn tw" title="Twitter"></a></li>
+					<li><a href="#" class="fa fa-google-plus square-Btn gplus" title="Google+"></a></li>
+					<li><a href="#" class="fa fa-linkedin square-Btn lnk" title="LinkedIn"></a></li>
+					<li><a href="#" class="fa fa-youtube square-Btn ytb" title="YouTube"></a></li>
+					<li><a href="#" class="fa fa-tumblr square-Btn tmb" title="Tumblr"></a></li>
+					<li><a href="#" class="fa fa-envelope square-Btn eml" title="Email"></a></li>
+				</ul>
+			</div>
+		</div>
+		
+		{% if new_comment %}
+			<h2>Your comment has been added.</h2>
+		{% else %}
+		<hr class="featurette-divider">
+		<div id="comment">
+			<h2>Add a new comment</h2>
+			<br>
+			<form action="." method="post">
+				{{ comment_form|crispy }}
+				{% csrf_token %}
+				<p><input type="submit" class="btn btn-success" value="Add comment"></p>
+			</form>
+		</div>
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block sidebar %}
+<div class="sidebar-module blog-list-ads">
+	<div class="row">
+		<div class="col-sm-10 col-sm-offset-1">
+			{{ post.side_ads_fst | markdown | safe }}
+		</div>
+	</div>
+</div>
+<div class="sidebar-module">
+	<div class="sidebar-menu">
+		<h4>Similar posts</h4>
+	</div>
+	<ul class="latest-posts-sect">
+		{% for post in similar_posts %}
+			<li>
+				<div class="row">
+					<div class="col-sm-6 latest-post-img">
+						{% if navbar_focus == '1' %}
+							<a href="{{ post.get_absolute_url }}"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_gambling }}"></a>
+						{% elif navbar_focus == '2' %}
+							<a href="{{ post.get_absolute_url }}"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_affiliate }}"></a>
+						{% elif navbar_focus == '3' %}
+							<a href="{{ post.get_absolute_url }}"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_forex }}"></a>
+						{% endif %}
+					</div>
+					<div class="col-sm-6 latest-post-title">
+						<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+					</div>
+				</div>
+			</li>
+		{% empty %}
+			There are no similar posts yet.
+		{% endfor %}
+	</ul>
+</div>
+<div class="sidebar-module blog-list-ads">
+	<div class="row">
+		<div class="col-sm-10 col-sm-offset-1">
+			{{ post.side_ads_sec | markdown | safe }}
+		</div>
+	</div>
+</div>
+<div class="sidebar-module">
+	<div class="sidebar-menu">
+		<h4>Latest Posts</h4>
+	</div>
+	{% show_latest_posts 3 %}
+</div>
+<div class="sidebar-module blog-list-ads">
+	<div class="row">
+		<div class="col-sm-10 col-sm-offset-1">
+			{{ post.side_ads_thrd | markdown | safe }}
+		</div>
+	</div>
+</div>
+<div class="sidebar-module">
+	<div class="sidebar-menu">
+	<h4>Most Commented Posts</h4>
+	</div>
+	{% get_most_commented_posts as most_commented_posts %}
+	<ul class="latest-posts-sect">
+		{% for post in most_commented_posts %}
+			<li>
+				<div class="row">
+					<div class="col-sm-6 latest-post-img">
+						{% if navbar_focus == '1' %}
+							<a href="{{ post.get_absolute_url }}"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_gambling }}"></a>
+						{% elif navbar_focus == '2' %}
+							<a href="{{ post.get_absolute_url }}"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_affiliate }}"></a>
+						{% elif navbar_focus == '3' %}
+							<a href="{{ post.get_absolute_url }}"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_forex }}"></a>
+						{% endif %}
+					</div>
+					<div class="col-sm-6 latest-post-title">
+						<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+					</div>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
+<div class="sidebar-module">
+	<a href="{% url "blog:post_feed" %}" class="rss-sect">
+		<div class="row">
+			<div class="col-sm-3">
+				<p class="fa fa-rss square-Btn rss" title="RSS Feed"></p>
+			</div>
+			<div class="col-sm-9 rss-feed">
+				<p>Subscribe to RSS feed</p>
+			</div>
+		</div>
+	</a>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% load staticfiles %}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{% static 'js/retina.js' %}"></script>
+<script src="{% static 'js/jquery.fancybox.pack.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/jquery.flexslider-min.js' %}"></script>
+<script src="{% static 'js/classie.js' %}"></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typeit/4.4.1/typeit.min.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+	(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+	function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+	e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+	e.src='//www.google-analytics.com/analytics.js';
+	r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+	ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+</script>
+
+<!-- type it -->
+<script type="text/javascript">
+	jQuery(document).ready(function($){
+	    $('.type-it').typeIt();
+	});
+</script>
+
+<!-- Pagination -->
+<script type="text/javascript">
+	$('.pagination li').on('click', function(event) {
+		var $this = $(this),
+			$pagination = $this.parent(),
+			$pages = $pagination.children(),
+			$active = $pagination.find('.active');
+		if($this.hasClass('prev')) {				
+			if ($pages.index($active) > 1) {
+				$active.removeClass('active').prev().addClass('active');
+			}
+		} else if($this.hasClass('next')) {
+			if ($pages.index($active) < $pages.length - 2) {
+				$active.removeClass('active').next().addClass('active');
+			}
+		} else {
+			$this.addClass('active').siblings().removeClass('active');
+		}
+		$active = $pagination.find('.active');
+
+		$('.prev')[$pages.index($active) == 1 ? 'addClass' : 'removeClass']('disabled');
+		$('.next')[$pages.index($active) == $pages.length - 2 ? 'addClass' : 'removeClass']('disabled');
+	});
+	let param = window.location.search.substring(1),
+		page_num = parseInt(param.match(/[0-9]+/g));
+	if (param == '') {
+		page_num = 1;
+	};
+	$('.pagination li').eq(page_num).trigger('click');
+</script>

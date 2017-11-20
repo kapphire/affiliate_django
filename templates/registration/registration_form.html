@@ -1,0 +1,63 @@
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "Register for an account" %}{% endblock %}
+
+{% block inject_css %}
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link href="{% static 'css/registration.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!-- <form method="post" action="">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <input type="submit" value="{% trans 'Submit' %}" />
+</form> -->
+<section class="custom-form section-padding text-center" id="contact">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h3>REGISTRATION</h3>
+            <p>Thank you in advance for registering !</p>
+            <form class="custom-form-form" method="post" action="">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <strong>The two password didn't match.</strong>
+                    </div>
+                {% endif %}
+                {% for field in form %}
+                    <div class="form-input-group">
+                        {% if field.label == 'Username' %}
+                            <i class="fa fa-user"></i><input type="text" name="{{ field.name }}" id="id_{{ field.name }}" placeholder="Enter your Username" required>
+                        {% elif field.label == 'E-mail' %}
+                            <i class="fa fa-envelope"></i><input type="email" name="{{ field.name }}" id="id_{{ field.name }}" placeholder="Enter your email" required>
+                        {% elif field.label == 'Password' %}
+                            <i class="fa fa-lock"></i><input type="password" name="{{ field.name }}" id="id_{{ field.name }}" placeholder="Enter your password" required>
+                        {% elif field.label == 'Password confirmation' %}
+                            <i class="fa fa-lock"></i><input type="password" name="{{ field.name }}" id="id_{{ field.name }}" placeholder="Confirm your password" required>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <input type="submit" class="btn-fill custom-form-btn" value="{% trans 'REGISTER' %}" />
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% comment %}
+**registration/registration_form.html**
+Used to show the form users will fill out to register. By default, has
+the following context:
+
+``form``
+    The registration form. This will be an instance of some subclass
+    of ``django.forms.Form``; consult `Django's forms documentation
+    <http://docs.djangoproject.com/en/dev/topics/forms/>`_ for
+    information on how to display this in a template.
+{% endcomment %}

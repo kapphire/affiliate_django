@@ -1,0 +1,20 @@
+<ul class="latest-posts-sect">
+	{% for post in latest_posts %}
+		<li>
+			<div class="row">
+				<div class="col-sm-6 latest-post-img">
+					{% if classify == 1 %}
+						<a href="{{ post.get_absolute_url }}"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_gambling }}"></a>
+					{% elif classify == 2 %}
+						<a href="{{ post.get_absolute_url }}"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_affiliate }}"></a>
+					{% elif classify == 3 %}
+						<a href="{{ post.get_absolute_url }}"><img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_forex }}"></a>
+					{% endif %}
+				</div>
+				<div class="col-sm-6 latest-post-title">
+					<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+				</div>
+			</div>
+		</li>
+	{% endfor %}
+</ul>

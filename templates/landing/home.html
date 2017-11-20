@@ -1,0 +1,257 @@
+{% extends 'landing/base.html' %}
+{% load staticfiles %}
+{% load blog_tags %}
+
+{% block intro_section %}
+<section class="intro section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 intro-feature">
+                <div class="intro-icon">
+                    <!-- <span data-icon="&#xe033;" class="icon"></span> -->
+                    <span class="carousel_helper"></span>
+                    <a href="{% url 'blog:post_list' post_class=1 %}"><img src="{% static 'img/landing/carousel_gambling.png' %}"></a>
+                </div>
+                <div class="intro-content">
+                    <h5 class="type-it">Make money through gambling online</h5>
+                    <p>Gambling in itself is not a bad thing. Some people gamble for fun, while others do it to earn. These are professional gamblers who join tournaments in different places. Whatever type of gambler you are, you are playing a game of luck using a little skill for the chance to tow in a lot of money.</p>
+                </div>
+            </div>
+            <div class="col-md-4 intro-feature">
+                <div class="intro-icon">
+                    <span class="carousel_helper"></span>
+                    <a href="{% url 'blog:post_list' post_class=2 %}"><img src="{% static 'img/landing/carousel_affiliate.png' %}"></a>
+                </div>
+                <div class="intro-content">
+                    <h5 class="type-it">Make money through affiliate marketing online</h5>
+                    <p>Affiliate marketing has become one of the top business opportunities online because the startup costs are so low and the income you generate can be mind-blowing. Affiliate marketing can be done on a part-time basis, and many are so successful that they've made it their full-time job.</p>
+                </div>
+            </div>
+            <div class="col-md-4 intro-feature">
+                <div class="intro-icon">
+                    <span class="carousel_helper"></span>
+                    <a href="{% url 'blog:post_list' post_class=3 %}"><img src="{% static 'img/landing/carousel_forex.png' %}"></a>
+                </div>
+                <div class="intro-content last">
+                    <h5 class="type-it">Make money through forex trading online</h5>
+                    <p>Owing to its high liquidity, 24/7 schedule, and easy accessibility, forex trading has emerged as a popular career. Being your own boss with the comforts of making money when its convenient for you is enough motivation to consider forex trading as a career.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block highlight %}
+<section class="blog text-center">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <article class="blog-post">
+                    <figure>
+                        <a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ gambling_latest.image_gambling }}" class="single_image">
+                            <div class="blog-img-wrap">
+                                <div class="overlay">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                <img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ gambling_latest.image_gambling }}" alt="{{ affiliate_latest.title }}"/>
+                            </div>
+                        </a>
+                        <figcaption>
+                        <h2><a href="{{ gambling_latest.get_absolute_url }}" class="blog-category" data-toggle="tooltip" data-placement="top" data-original-title="See more posts">{{ gambling_latest.title }}</a></h2>
+                        <p><a href="{{ gambling_latest.get_absolute_url }}" class="blog-post-title">View <i class="fa fa-angle-right"></i></a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="blog-post">
+                    <figure>
+                        <a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ affiliate_latest.image_affiliate }}" class="single_image">
+                            <div class="blog-img-wrap">
+                                <div class="overlay">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                <img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ affiliate_latest.image_affiliate }}" alt="{{ affiliate_latest.title }}"/>
+                            </div>
+                        </a>
+                        <figcaption>
+                        <h2><a href="{{ affiliate_latest.get_absolute_url }}" class="blog-category" data-toggle="tooltip" data-placement="top" data-original-title="See more posts">{{ affiliate_latest.title }}</a></h2>
+                        <p><a href="{{ affiliate_latest.get_absolute_url }}" class="blog-post-title">View <i class="fa fa-angle-right"></i></a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+            </div>
+            <div class="col-md-4">
+                <article class="blog-post">
+                    <figure>
+                        <a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ forex_latest.image_forex }}" class="single_image">
+                            <div class="blog-img-wrap">
+                                <div class="overlay">
+                                    <i class="fa fa-search"></i>
+                                </div>
+                                 <img src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ forex_latest.image_forex }}" alt="{{ affiliate_latest.title }}"/>
+                            </div>
+                        </a>
+                        <figcaption>
+                        <h2><a href="{{ forex_latest.get_absolute_url }}" class="blog-category" data-toggle="tooltip" data-placement="top" data-original-title="See more posts">{{ forex_latest.title }}</a></h2>
+                        <p><a href="{{ forex_latest.get_absolute_url }}" class="blog-post-title">View <i class="fa fa-angle-right"></i></a></p>
+                        </figcaption>
+                    </figure>
+                </article>
+            </div>
+            <a class="btn btn-ghost btn-accent btn-small" id="more_articles">More Articles</a> 
+            {% csrf_token %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block commented %}
+<section class="hero-strip section-padding">
+    <div class="container">
+        <div class="col-md-12 text-center">
+            <h2>
+                <span class="sketch">Trending Posts on WELTHOD <i class="version">3</i></span>
+            </h2>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="col-md-12 text-center">
+            {% get_most_gambling_commented_posts as most_gambling_commented_posts %}
+            {% for post in most_gambling_commented_posts %}
+                <div class="col-md-2">
+                    <a href="{{ post.get_absolute_url }}"><img class="most-commented" src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_gambling }}" alt="{{ post.title }}" /></a>
+                    <p><a href="{{ post.get_absolute_url }}" class="blog-category" data-toggle="tooltip" data-placement="top" data-original-title="See more posts">{{ post.title }}</a></p>
+                </div>
+            {% endfor %}
+            {% get_most_affiliate_posts as most_affiliate_posts %}
+            {% for post in most_affiliate_posts %}
+                <div class="col-md-2">
+                    <a href="{{ post.get_absolute_url }}"><img class="most-commented" src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_affiliate }}" alt="{{ post.title }}" /></a>
+                    <p><a href="{{ post.get_absolute_url }}" class="blog-category" data-toggle="tooltip" data-placement="top" data-original-title="See more posts">{{ post.title }}</a></p>
+                </div>
+            {% endfor %}
+            {% get_most_forex_posts as most_forex_posts %}
+            {% for post in most_forex_posts %}
+                <div class="col-md-2">
+                    <a href="{{ post.get_absolute_url }}"><img class="most-commented" src="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/static/img/{{ post.image_forex }}" alt="{{ post.title }}" /></a>
+                    <p><a href="{{ post.get_absolute_url }}" class="blog-category" data-toggle="tooltip" data-placement="top" data-original-title="See more posts">{{ post.title }}</a></p>
+                </div>
+            {% endfor %}
+            <!-- <a href="#" class="btn btn-ghost btn-accent btn-large">Download now!</a> -->
+        </div>
+        <div class="logo-placeholder floating-logo"><img src="{% static 'img/sketch-logo.png' %}" alt="Sketch Logo"></div>
+    </div>
+</section>
+{% endblock %}
+
+{% block features %}
+<section class="features section-padding" id="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-md-offset-7">
+                <div class="feature-list">
+                    <h3>TOP GAMBLING TRENDS OF 2017!</h3>
+                    <p>Financial performance of Gambling operators for the past 2016 can be characterized as stable, while projections for the current year pint to sustainable increase in income rates.</p>
+                    <ul class="features-stack">
+                        <li class="feature-item">
+                            <div class="feature-icon">
+                                <span data-icon="&#xe02c;" class="icon"></span>
+                            </div>
+                            <div class="feature-content">
+                                <h5>NETWORK SECURITY</h5>
+                                <p>Experts predict that in 2017 there will be a substantial funding to enhance the security of gambling resources.</p>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon">
+                                <span data-icon="&#xe052;" class="icon"></span>
+                            </div>
+                            <div class="feature-content">
+                                <h5>CRYPTOCURRENCY USAGE</h5>
+                                <p>The current year will keep the said traditions, and the number of gambling resources accepting cryptocurrency will grow even more.</p>
+                            </div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon">
+                                <span data-icon="&#xe05b;" class="icon"></span>
+                            </div>
+                            <div class="feature-content">
+                                <h5>TENDENCIES TOWARDS SOCIALIZATION</h5>
+                                <p>In recent years, there has been a trend towards socialization and mobilization of game content.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="makemoney-showcase">
+        <div class="makemoney">
+            <div class="gambling-case wp1"></div>
+            <div class="earner-case wp2"></div>
+        </div>
+    </div>
+    <div class="responsive-feature-img"><img src="{% static 'img/devices.png' %}" alt="responsive devices"></div>
+</section>
+<section class="features-extra section-padding" id="assets">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="feature-list">
+                    <h3>2017 AFFILIATE MARKETING TRENDS!</h3>
+                    <p>2017 is going to see substantial growth in non-traditional content affiliate relationships as merchants place emphasis on growing beyond dependence on coupon and cashback/loyalty affiliates to drive incremental sales. Merchants who commit to identifying these partners and providing them with the tools they need will prosper in 2017 and beyond.</p>
+                    <p>Affiliate marketing will become more mainstream, which is both a blessing and a curse. Consumers will be more aware of how it is used to monetize content, and they will accept it as legitimate. However, consumers will themselves become affiliates in greater numbers thanks to an increase in revenue sharing apps and tools.
+                    </p>
+                    <a href="{% url 'blog:post_list' post_class=2 %}" class="btn btn-ghost btn-accent btn-small">What's Affiliate Marketing?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="affiliate-case wp3"></div>
+    <div class="responsive-feature-img"><img src="{% static 'img/macbook-pro.png' %}" alt="responsive devices"></div>
+</section>
+{% endblock %}
+
+<section class="blog-intro section-padding" id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Showcase your smashing product with Sedna</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12 leftcol">
+                <h5>EXCLUSIVE TO CODROPS</h5>
+                <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div class="col-md-6 col-sm-12 col-xs-12 rightcol">
+                <h5>SPREADING PIXELS AROUND THE WORLD</h5>
+                <p>Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block contact %}
+    {% include 'landing/contact.html' %}
+{% endblock %}
+
+{% block javascript %}
+    <script src=" http://cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js "></script>
+    <script type="text/javascript">
+        var csrftoken = $.cookie('csrftoken');
+        function csrfSafeMethod(method){
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function (xhr, settings) {
+                if(!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+    </script>
+    <script type="text/javascript" src="{% static 'js/custom/landing.js' %}"></script>
+{% endblock %}

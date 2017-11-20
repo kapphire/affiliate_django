@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<section class="navigation">
+    <header>
+        <div class="header-content">
+            <div class="logo"><a href="/"><img src="{% static 'img/sedna-logo.png' %}" alt="Sedna logo"></a></div>
+            <div class="header-nav">
+                <nav>
+                    <ul class="primary-nav">
+                        <li {% if navbar_focus == "1" %}class="active"{% endif %}><a href="{% url 'blog:post_list' post_class=1 %}">Gambling</a></li>
+                        <li {% if navbar_focus == "2" %}class="active"{% endif %}><a href="{% url 'blog:post_list' post_class=2 %}">Affiliate Marketing</a></li>
+                        <li {% if navbar_focus == "3" %}class="active"{% endif %}><a href="{% url 'blog:post_list' post_class=3 %}">Forex Trading</a></li>
+                        <li><a href="{% if request.is_secure %}https://{% else %}http://{% endif %}{{request.get_host}}/#contact">Contact us</a></li>
+                    </ul>
+                    <ul class="member-actions">
+                        {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'auth_logout' %}" class="btn-white btn-small">Logout</a></li>
+                        {% else %}
+                            <li><a href="{% url 'auth_login' %}" class="login">Log in</a></li>
+                            <li><a href="{% url 'registration_register' %}" class="btn-white btn-small">Sign up</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            <div class="navicon">
+                <a class="nav-toggle" href="#"><span></span></a>
+            </div>
+        </div>
+    </header>
+</section>

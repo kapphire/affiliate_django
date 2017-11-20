@@ -1,0 +1,10 @@
+Django==1.8.6
+django-taggit==0.17.1
+pytz==2017.2
+django-crispy-forms==1.7.0
+django-registration-redux==1.8
+Markdown==2.6.9
+Pillow==4.3.0
+python-social-auth
+social-auth-app-django
+sorl-thumbnail
