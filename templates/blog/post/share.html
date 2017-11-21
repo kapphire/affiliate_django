@@ -21,10 +21,29 @@
 					"{{ post.title }}" was successfully sent to {{ cd.to }}.
 				</p>
 			{% else %}
-				<h2>SHARE</h2><h3> "{{ post.title }}" by e-mail</h3>
+				<h2>- SHARE -</h2><h3> "{{ post.title }}" </h3><h4>by e-mail</h4>
 				<form class="custom-form-form" action="." method="post">
-					{{ form | crispy }}
 					{% csrf_token %}
+					{% if form.errors %}
+						
+							<div class="alert alert-danger">
+								<strong>{{ form.errors }}</strong>
+							</div>
+						
+					{% endif %}
+					{% for field in form %}
+						<div class="form-input-group">
+							{% if field.label == 'Name' %}
+								<i class="fa fa-user"></i><input type="text" name="{{ field.name }}" id="id_{{ field.name }}" placeholder="Enter your name" required>
+							{% elif field.label == 'Email' %}
+								<i class="fa fa-envelope"></i><input type="email" name="{{ field.name }}" id="id_{{ field.name }}" placeholder="Enter the email" required>
+							{% elif field.label == 'To' %}
+								<i class="fa fa-envelope"></i><input type="email" name="{{ field.name }}" id="id_{{ field.name }}" placeholder="To" required>
+							{% elif field.label == 'Comments' %}
+								<i class="fa fa-file"></i><input type="text" name="{{ field.name }}" id="id_{{ field.name }}" placeholder="Message" required>
+							{% endif %}
+						</div>
+					{% endfor %}
 					<input type="submit" class="btn-fill custom-form-btn" value="Send e-mail">
 				</form>
 			{% endif %}
