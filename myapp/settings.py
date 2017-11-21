@@ -48,7 +48,6 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',   # social auth
     'social_django',
     'taggit',
-    'crispy_forms',
     'registration',                     # registration redux
     'sorl.thumbnail',                   # image thumbnail
     # My apps
@@ -129,8 +128,6 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_in_env', 'media_root')
 
-# Crispy Form Settings
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # Django Registration Redux Settings
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
