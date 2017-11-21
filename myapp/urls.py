@@ -18,11 +18,11 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
-# from blog.sitemaps import PostSitemap
+from blog.sitemaps import PostSitemap
 
-# sitemaps = {
-#     'posts' : PostSitemap,
-# }
+sitemaps = {
+    'posts' : PostSitemap,
+}
 
 from landing.views import home
 
@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', home, name = 'home'),
 	url(r'^blog/', include('blog.urls', namespace = 'blog', app_name = 'blog')),
-    # url(r'^sitemap\.xml$', sitemap, {'sitemaps' : sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps' : sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     # under Linux or Mac OS X, edit your /etc/hosts file and add the following line to it   127.0.0.1 mysite.com
     # Windows, your hosts file is located at C:\Winwows\System32\Drivers\etc\hosts.
     url('social-auth/', include('social.apps.django_app.urls', namespace='social')),

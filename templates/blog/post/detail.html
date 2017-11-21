@@ -56,8 +56,8 @@
 			<div class="socials social-position">
 				<ul>
 					<li><a href="#" class="fa fa-facebook square-Btn fb" title="Facebook"></a></li>
-					<li><a href="#" class="fa fa-twitter square-Btn tw" title="Twitter"></a></li>
-					<li><a href="#" class="fa fa-google-plus square-Btn gplus" title="Google+"></a></li>
+					<li><a href="{% url "social:begin" "twitter"%}" class="fa fa-twitter square-Btn tw" title="Twitter"></a></li>
+					<li><a href="{% url "social:begin" "google-oauth2" %}" class="fa fa-google-plus square-Btn gplus" title="Google+"></a></li>
 					<li><a href="#" class="fa fa-linkedin square-Btn lnk" title="LinkedIn"></a></li>
 					<li><a href="#" class="fa fa-youtube square-Btn ytb" title="YouTube"></a></li>
 					<li><a href="#" class="fa fa-tumblr square-Btn tmb" title="Tumblr"></a></li>
@@ -70,15 +70,17 @@
 			<h2>Your comment has been added.</h2>
 		{% else %}
 		<hr class="featurette-divider">
-		<div id="comment">
-			<h2>Add a new comment</h2>
-			<br>
-			<form action="." method="post">
-				{{ comment_form|crispy }}
-				{% csrf_token %}
-				<p><input type="submit" class="btn btn-success" value="Add comment"></p>
-			</form>
-		</div>
+			{% if user.is_authenticated %}
+			<div id="comment">
+				<h2>Add a new comment</h2>
+				<br>
+				<form action="." method="post">
+					{{ comment_form|crispy }}
+					{% csrf_token %}
+					<p><input type="submit" class="btn btn-success" value="Add comment"></p>
+				</form>
+			</div>
+			{% endif %}
 		{% endif %}
 	</div>
 {% endblock %}

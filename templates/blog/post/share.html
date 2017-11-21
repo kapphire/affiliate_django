@@ -1,20 +1,34 @@
-{% extends "blog/base.html" %}
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+{% load staticfiles %}
 {% load crispy_forms_tags %}
 
 {% block title %}Share a post{% endblock %}
 
+{% block inject_css %}
+<link href="{% static 'css/blog.css' %}" rel="stylesheet">
+<link href="{% static 'css/registration.css' %}" rel="stylesheet">
+<link href="{% static 'css/styles.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-	{% if sent %}
-		<h1>E-mail successfully sent</h1>
-		<p>
-			"{{ post.title }}" was successfully sent to {{ cd.to }}.
-		</p>
-	{% else %}
-		<h1>Share "{{ post.title }}" by e-mail</h1>
-		<form action="." method="post">
-			{{ form | crispy }}
-			{% csrf_token %}
-			<input type="submit" value="Send e-mail">
-		</form>
-	{% endif %}
+<section class="custom-form section-padding text-center" id="contact">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			{% if sent %}
+				<h3>E-mail successfully sent</h3>
+				<p>
+					"{{ post.title }}" was successfully sent to {{ cd.to }}.
+				</p>
+			{% else %}
+				<h2>SHARE</h2><h3> "{{ post.title }}" by e-mail</h3>
+				<form class="custom-form-form" action="." method="post">
+					{{ form | crispy }}
+					{% csrf_token %}
+					<input type="submit" class="btn-fill custom-form-btn" value="Send e-mail">
+				</form>
+			{% endif %}
+		</div>
+	</div>
+</section>
 {% endblock %}

@@ -58,8 +58,8 @@
 		<div class="socials social-position">
 			<ul>
 				<li><a href="#" class="fa fa-facebook square-Btn fb" title="Facebook"></a></li>
-				<li><a href="#" class="fa fa-twitter square-Btn tw" title="Twitter"></a></li>
-				<li><a href="#" class="fa fa-google-plus square-Btn gplus" title="Google+"></a></li>
+				<li><a href="{% url "social:begin" "twitter"%}" class="fa fa-twitter square-Btn tw" title="Twitter"></a></li>
+				<li><a href="{% url "social:begin" "google-oauth2" %}" class="fa fa-google-plus square-Btn gplus" title="Google+"></a></li>
 				<li><a href="#" class="fa fa-linkedin square-Btn lnk" title="LinkedIn"></a></li>
 				<li><a href="#" class="fa fa-youtube square-Btn ytb" title="YouTube"></a></li>
 				<li><a href="#" class="fa fa-tumblr square-Btn tmb" title="Tumblr"></a></li>
