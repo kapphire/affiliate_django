@@ -45,8 +45,8 @@ let MoreArticles = (() => {
 	const init = () => {
 		$(document)
 		.on("click", "#more_articles", (event) => {
+			event.preventDefault();
 			let val = count++;
-			console.log(val);
 			moreArticles(val);
 		})
 	}

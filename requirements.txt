@@ -1,6 +1,7 @@
 Django
 django-taggit
 pytz
+django-crispy-forms
 django-registration-redux
 Markdown
 Pillow

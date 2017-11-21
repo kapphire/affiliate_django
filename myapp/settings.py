@@ -31,7 +31,7 @@ EMAIL_HOST_PASSWORD = 'Sapphire@123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com']
 
 # Application definition
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     # Third party apps
     'social.apps.django_app.default',   # social auth
     'social_django',
+    'crispy_forms',
     'taggit',
     'registration',                     # registration redux
     'sorl.thumbnail',                   # image thumbnail
@@ -142,6 +143,8 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.twitter.TwitterOAuth',
     'social.backends.google.GoogleOAuth2',
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 SOCIAL_AUTH_TWITTER_KEY = 'MalSgycDUMzHBfc6OqMJtt11n'
 SOCIAL_AUTH_TWITTER_SECRET = '1pfifBZ2U4EjMqHOVXX7XpuhkuzJHSmND5796pfLB3VBAdnT8S'

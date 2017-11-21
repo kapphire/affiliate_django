@@ -24,10 +24,12 @@ from django.contrib.sitemaps.views import sitemap
 #     'posts' : PostSitemap,
 # }
 
+from landing.views import home
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.default.urls')),
-    url(r'^$', 'landing.views.home', name = 'home'),
+    url(r'^$', home, name = 'home'),
 	url(r'^blog/', include('blog.urls', namespace = 'blog', app_name = 'blog')),
     # url(r'^sitemap\.xml$', sitemap, {'sitemaps' : sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     # under Linux or Mac OS X, edit your /etc/hosts file and add the following line to it   127.0.0.1 mysite.com
